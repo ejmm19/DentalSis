@@ -1,0 +1,65 @@
+/* Your custom styles */
+#content-form-log{
+  display: none;
+}
+.form-control{
+  border-radius: 0 !important;
+}
+#preloader{
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  background: #FFF;
+}
+#preloader img{
+  margin-top: 30%;
+}
+#nav-dashboard{
+  background: #243a51;
+  margin: 0;
+}
+#navbarDropdownMenuLink-4{
+  text-transform: capitalize;
+}
+.list-group-item{
+  background: none !important;
+}
+#accordion{
+  background: #243a51;
+  height: 100%;
+}
+#accordion .card-header{
+  background: none;
+  border-bottom: none;
+}
+#accordion .card{
+  background: none;
+  box-shadow: none;
+}
+#accordion a.itm-menu-lat{
+  color: #fff;
+}
+#container-content .col-lg-10{
+  overflow-x: hidden;
+}
+#container-content .col-lg-10 .legend-titulo{
+  font-weight: 600;
+
+}
+#container-content .col-lg-10 .opciones{
+  position: fixed;
+  top: 90%;
+  left: 92%;
+}
+.btn-fixed{
+  font-size: 1.4em;
+  padding: .6em .8em;
+  border-radius: 50%;
+}
+.edit{
+  background: #007bff;
+}
+.itm-menu-lat{
+  font-size: .8em;
+}
