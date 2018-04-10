@@ -23,6 +23,12 @@ Breadcrumbs::register('list-pacientes', function ($breadcrumbs) {
     $breadcrumbs->push('Pacientes / Listar', route('list-pacientes'));
 });
 
+// Home > Pacientes > ver
+Breadcrumbs::register('paciente', function ($breadcrumbs,$id) {
+    // $breadcrumbs->parent('home');
+    $breadcrumbs->parent('list-pacientes');
+    $breadcrumbs->push('Ver ', route('paciente',$id));
+});
 // Home > Blog
 Breadcrumbs::register('blog', function ($breadcrumbs) {
     $breadcrumbs->parent('home');

@@ -23,6 +23,7 @@ Route::get('/get-empresa', 'InitialController@getEmpresa');
 Route::get('/ajustes','HomeController@Versettings')->name('ajustes');
 Route::get('/pacientes/listar','HomeController@listPacientes')->name('list-pacientes');
 Route::get('/get-pacientes','PacientesController@index');
+Route::get('/pacientes/ver/{id}','PacientesController@show')->name('paciente');
 
 // Ruta de formulario editar empresa
 Route::post('/edit-empresa','EmpresaController@edit');

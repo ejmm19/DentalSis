@@ -47,31 +47,38 @@ if ($("#table-pacientes-list").length > 0) {
           'to': 0
         },
       offset: 3,
-      busqueda: ''
+      busqueda: '',
+      resultado: 'algo'
     },
     watch:{
       busqueda: function(){
         var that = this;
         if (this.busqueda == '') {
           this.getPacientes()
-        }
-        if (this.pacientes.length == 10) {
+          that.resultado = 'algo'
+        }else{
           axios.get('../get-pacientes?buscar='+this.busqueda)
               .then(function (response) {
-               that.pacientes = response.data
-               console.log('ejecuta');
+                if (response.data == '') {
+                  that.pacientes = response.data
+                  that.resultado = 'vacio'
+                }else {
+                  that.pacientes = response.data
+                  that.resultado = 'vacio2'
+                }
                })
               .catch(function (error) {
                  console.log(error);
           });
-        }else {
-          $.each(this.pacientes, function(i, v) {
-              if (v.nombre.search(new RegExp(/wend/i)) != -1) {
-                  console.log(v.nombre+" - "+that.busqueda)
-                  return;
-              }
-          });
         }
+        // else {
+        //   $.each(this.pacientes, function(i, v) {
+        //       if (v.nombre.search(new RegExp(/wendy/i)) != -1) {
+        //           console.log(v.nombre+" - "+that.busqueda)
+        //           return;
+        //       }
+        //   });
+        // }
       }
     },
     computed:{

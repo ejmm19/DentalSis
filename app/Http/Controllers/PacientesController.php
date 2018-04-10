@@ -13,14 +13,8 @@ class PacientesController extends Controller
      */
     public function index(Request $request){
       if ($request->buscar) {
-        if (\Cache::has('pacientes')) {
-          $pacientes = \Cache::get('pacientes'); //si es así la guarda en la variable $empresa
-        }else{
-          $pacientesdat = DB::table('pacientes')->get(); //Si no es así, realiza consulta en la Base de datos y el resultado lo guarda en la variable $empresadat
-          \Cache::put('pacientes', $pacientesdat, 60); //seteamos una variable cache pacientes con el valor guardado en la variable $empresadat y la variable durará 60 minutos
-          $pacientes = \Cache::get('pacientes'); // guardamos la variable cache en variable $empresa para luego retornar
-        }        
-        return $pacientes;
+          $pacientesdat = DB::table('pacientes')->where('nombre', 'like', $request->buscar.'%')->get();
+        return $pacientesdat;
       }else {
         $pacientes = DB::table('pacientes')->paginate(10);
         return [
@@ -64,9 +58,9 @@ class PacientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        $paciente = DB::table('pacientes')->where('id',$id)->get();
+        return view('viewsUser.pacientes.ver-paciente')->with(['paciente'=>$paciente]);
     }
 
     /**
