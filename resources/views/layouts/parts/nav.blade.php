@@ -10,6 +10,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link waves-effect waves-light">
+                @if (1 > 0)
+                  <i class="far fa-bell"></i>
+                @else
+                  <i class="fas fa-bell"></i>
+                @endif
+                 Notificaciones
+              </a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user"></i> {{ Auth::user()->name }}

@@ -45,7 +45,10 @@
 }
 #container-content .col-lg-10 .legend-titulo{
   font-weight: 600;
-
+  float: left;
+}
+#container-content .col-lg-10 .buscar{
+  float: right;
 }
 #container-content .col-lg-10 .opciones{
   position: fixed;
@@ -62,4 +65,25 @@
 }
 .itm-menu-lat{
   font-size: .8em;
+}
+#paginate-custom ul{
+  -webkit-box-pack: end!important;
+  -ms-flex-pack: end!important;
+  justify-content: flex-end!important;
+}
+#paginate-custom ul li span{
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  font-size: .9rem;
+  color: #212529;
+}
+.pagination .page-item.active .page-link{
+  background-color: #243a51;
+}
+table.table th{
+  padding-top: .7em;
+  padding-bottom: .7em;
 }

@@ -4,22 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-class EmpresaController extends Controller
+class PacientesController extends Controller
 {
-    protected $date;
-
-    public function __construct() {
-      $this->date = Carbon::now('America/Bogota');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request){
+      if ($request->buscar) {
+        if (\Cache::has('pacientes')) {
+          $pacientes = \Cache::get('pacientes'); //si es así la guarda en la variable $empresa
+        }else{
+          $pacientesdat = DB::table('pacientes')->get(); //Si no es así, realiza consulta en la Base de datos y el resultado lo guarda en la variable $empresadat
+          \Cache::put('pacientes', $pacientesdat, 60); //seteamos una variable cache pacientes con el valor guardado en la variable $empresadat y la variable durará 60 minutos
+          $pacientes = \Cache::get('pacientes'); // guardamos la variable cache en variable $empresa para luego retornar
+        }        
+        return $pacientes;
+      }else {
+        $pacientes = DB::table('pacientes')->paginate(10);
+        return [
+          'paginate' =>[
+              'total' => $pacientes->total(),
+              'current_page' => $pacientes->currentPage(),
+              'per_page' => $pacientes->perPage(),
+              'last_page' => $pacientes->lastPage(),
+              'from' => $pacientes->firstItem(),
+              'to' => $pacientes->lastPage()
+          ],
+          'pacientes' => $pacientes];
+      }
+
     }
 
     /**
@@ -60,17 +75,9 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request){
-      DB::table('empresa')->where('id', 1)
-            ->update(['nombre' => $request->empresa,
-                      'slogan' => $request->slogan,
-                      'nit' => $request->nit,
-                      'celular' => $request->celular,
-                      'telefono' => $request->telefono,
-                      'updated_at' => $this->date]);
-     $empresadat = DB::table('empresa')->get(); //Si no es así, realiza consulta en la Base de datos y el resultado lo guarda en la variable $empresadat
-     \Cache::put('datempresa', $empresadat, 60); //seteamos una variable cache datempresa con el valor guardado en la variable $empresadat y la variable durará 60 minutos
-      return back();
+    public function edit($id)
+    {
+        //
     }
 
     /**

@@ -29,7 +29,8 @@ class HomeController extends Controller
       return view('admin.settings')->with(['datempresa' => $this->getEmpresa()]); //retornamos a una vista con la colección de datos
     }
     public function listPacientes(){
-      return view('viewsUser.list-pacientes')->with(['datempresa' => $this->getEmpresa()]);
+      // $pacientes = DB::table('pacientes')->paginate(15);
+    return view('viewsUser.list-pacientes')->with(['datempresa' => $this->getEmpresa()/*,'pacientes'=>$pacientes*/]);
     }
     public function getEmpresa(){ //Obtiene los datos de la tabla empresa y los guarda en cache
       if (\Cache::has('datempresa')) {  //Pregunta si la variable cache existe
