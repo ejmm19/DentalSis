@@ -13,7 +13,7 @@
     </head>
     <body class="fixed-sn light-blue-skin">
       <div id="preloader">
-        <img src="{{url('img/best_webdesign2018.gif')}}" width="15%" class="mx-auto d-block" alt="">
+        <img src="{{url('img/loading.gif')}}" width="15%" class="mx-auto d-block" alt="">
       </div>
 
         @if (!Auth::guest()) {{-- preguntamos si hay usuario logueado --}}
